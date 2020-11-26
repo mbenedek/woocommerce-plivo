@@ -13,13 +13,13 @@
  * @category  HTTP
  * @package   HTTP_Request2
  * @author    Alexey Borzov <avb@php.net>
- * @copyright 2008-2014 Alexey Borzov <avb@php.net>
+ * @copyright 2008-2020 Alexey Borzov <avb@php.net>
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
  * @link      http://pear.php.net/package/HTTP_Request2
  */
 
-/** Socket wrapper class used by Socket Adapter */
-require_once 'HTTP/Request2/SocketWrapper.php';
+// pear-package-only /** Socket wrapper class used by Socket Adapter */
+// pear-package-only require_once 'HTTP/Request2/SocketWrapper.php';
 
 /**
  * SOCKS5 proxy connection class (used by Socket Adapter)
@@ -28,7 +28,7 @@ require_once 'HTTP/Request2/SocketWrapper.php';
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
  * @license  http://opensource.org/licenses/BSD-3-Clause BSD 3-Clause License
- * @version  Release: 2.2.1
+ * @version  Release: @package_version@
  * @link     http://pear.php.net/package/HTTP_Request2
  * @link     http://pear.php.net/bugs/bug.php?id=19332
  * @link     http://tools.ietf.org/html/rfc1928
@@ -49,7 +49,7 @@ class HTTP_Request2_SOCKS5 extends HTTP_Request2_SocketWrapper
      * @throws HTTP_Request2_MessageException
      */
     public function __construct(
-        $address, $timeout = 10, array $contextOptions = array(),
+        $address, $timeout = 10, array $contextOptions = [],
         $username = null, $password = null
     ) {
         parent::__construct($address, $timeout, $contextOptions);
