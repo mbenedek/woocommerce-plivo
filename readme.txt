@@ -31,7 +31,7 @@ Get what the big boys are using and add a more physical dimension to the shop.
 = Powered by Plivo =
 [Plivo](http://www.plivo.com) is an awesome cloud based API platform for building Voice and SMS enabled applications. We make use of the Plivo API to send all the messages.
 Support for over 200 countries and competitive pricing makes Plivo a nobrainer. Prices starting at $0,0065 per text!
-Get started now by creating your [free trial account](https://manage.plivo.com/accounts/register/?utm_source=plivo-plugin&utm_medium=wordpress&utm_campaign=siteoptimo).
+Get started now by creating your [free trial account](https://console.plivo.com/accounts/register/?utm_source=plivo-plugin&utm_medium=wordpress&utm_campaign=siteoptimo).
 
 = WPML compatible =
 This plugin is WPML compatible. Multilingual shops can now auto send status notifications in the language of the customer.

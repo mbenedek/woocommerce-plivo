@@ -19,13 +19,11 @@ Powered by Plivo
 ----------------
 Plivo is an awesome cloud based API platform for building Voice and SMS enabled applications. We make use of the Plivo API to send all the messages.
 Support for over 200 countries and competitive pricing makes Plivo a nobrainer. Prices starting at $0,0065 per text!
-Get started now by creating your [free trial account](https://manage.plivo.com/accounts/register/?utm_source=plivo-plugin&utm_medium=wordpress&utm_campaign=siteoptimo).
+Get started now by creating your [free trial account](https://console.plivo.com/accounts/register/?utm_source=plivo-plugin&utm_medium=wordpress&utm_campaign=siteoptimo).
 
 Requirements
 ------------
 To make use of the Plivo API, this plugin requires php-openssl, php-curl to be installed. Obviously, you'll need a Plivo account.
-
-Version 1.1 note: we have included a fallback for the required [pear package HTTP_Request2](http://pear.php.net/package/HTTP_Request2). So from now on, it's no longer required, but still recommended.
 
 Installation
 ------------

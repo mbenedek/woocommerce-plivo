@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: WooCommerce Plivo
-Version: 2.1.0
-Plugin URI: http://www.siteoptimo.com/#utm_source=wpadmin&utm_medium=plugin&utm_campaign=wcplivoplugin
+Version: 3.0.0
+Plugin URI: https://github.com/mbenedek/woocommerce-plivo
 Description: Send SMS update notifications to your customers with this Plivo plugin for WooCommerce.
-Author: SiteOptimo
-Author URI: http://www.siteoptimo.com/
+Author: SiteOptimo & mbenedek
+Author URI: https://github.com/mbenedek
 Text Domain: woocommerce-plivo
 Domain Path: /i18n/languages/
 License: GPL v3
@@ -42,7 +42,7 @@ if(in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_o
          * Main WooCommerce_Plivo Class
          *
          * @class WooCommerce_Plivo
-         * @version 2.1.0
+         * @version 3.0.0
          */
         final class WooCommerce_Plivo
         {
@@ -56,7 +56,7 @@ if(in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_o
              *
              * @var string
              */
-            public static $version = "2.1.0";
+            public static $version = "3.0.0";
 
             /**
              * @var WCP_Status_Hook
@@ -73,13 +73,6 @@ if(in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_o
             {
                 // Register the autoloader classes.
                 spl_autoload_register(array($this, 'autoload'));
-                spl_autoload_register(array($this, 'autoload_plivo'));
-
-                // Use the fallback HTTP_Request2 if the PEAR package is not available.
-                if(!$this->HTTP_Request2_Available())
-                {
-                    ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR . $this->plugin_path() . 'library');
-                }
 
                 $this->includes();
 
@@ -113,19 +106,6 @@ if(in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_o
             {
                 require_once $this->plugin_path() . 'includes/wcp-functions.php';
                 require_once $this->plugin_path() . 'includes/wcp-wpml-integration.php';
-            }
-
-            /**
-             * Loads the Plivo API library as soon as it is needed.
-             *
-             * @param $class string
-             */
-            public function autoload_plivo($class)
-            {
-                if($class == "RestAPI")
-                {
-                    require_once $this->plugin_path() . 'library/plivo/plivo.php';
-                }
             }
 
             /**
@@ -317,20 +297,6 @@ if(in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_o
              */
             public function getStatusHook() {
                 return $this->statusHook;
-            }
-
-            /**
-             * Checks for availability of the HTTP_Request2 PEAR package
-             *
-             * @return bool
-             */
-            private function HTTP_Request2_Available()
-            {
-                if(class_exists('HTTP_Request2', false)) return true;
-
-                @$include = include('HTTP/Request2.php');
-
-                return $include === 1;
             }
 
 

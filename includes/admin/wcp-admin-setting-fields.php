@@ -74,7 +74,7 @@ class WCP_Admin_Setting_Fields
     private function get_settings()
     {
 
-        $settings['plivo_settings_title'] = array('name' => __('Plivo Settings', 'woocommerce-plivo'), 'type' => 'title', 'desc' => __('Find your Plivo Auth ID and Auth Token on your <a href="https://manage.plivo.com/dashboard/" target="_blank">Plivo Dashboard</a> page. Get your number at <a href="https://manage.plivo.com/number/" target="_blank">the Plivo numbers tab</a>.', 'woocommerce-plivo'), 'id' => 'wcp_plivo_settings_section_title');
+        $settings['plivo_settings_title'] = array('name' => __('Plivo Settings', 'woocommerce-plivo'), 'type' => 'title', 'desc' => __('Find your Plivo Auth ID and Auth Token on your <a href="https://console.plivo.com/dashboard/" target="_blank">Plivo Dashboard</a> page. Get your number at <a href="https://console.plivo.com/number/" target="_blank">the Plivo numbers tab</a>.', 'woocommerce-plivo'), 'id' => 'wcp_plivo_settings_section_title');
 
         $settings['auth_id'] = array('name' => __('Auth ID', 'woocommerce-plivo'), 'type' => 'text', 'id' => 'wcp_auth_id', 'desc_tip' => __('Required. Needed to make the magic happen.', 'woocommerce-plivo'));
 
