@@ -3,7 +3,8 @@
  * @package WooCommerce_Plivo
  */
 (function ($) {
-    var $submitButton = $("#wcp_send_button + .description .button");
+    var $submitButtonWarp = $("#wcp_send_button + .description");
+    var $submitButton = $(".button", $submitButtonWarp);
     var $phoneNumber = $("#wcp_demo_phone_number");
     var $message = $("#wcp_demo_message");
 
@@ -11,8 +12,11 @@
         $submitButton.on('click', function (e) {
             e.preventDefault();
 
-            // Add loading gif.
-            $('a.button').after('<span class="loadbutton" style="position:relative;top:0.2em;"><img src="' + WCP.plugin_url + 'assets/images/wpspin_light.gif" style="position:relative;top:0.2em;padding-left:1em;padding-right:0.3em;">Sending...</span>');
+            // delete any loading gifs / status that may have already been added
+            $('span.loadbutton', $submitButtonWarp).each(function() { $(this).remove() });
+
+            // Add loading gif...
+            $submitButton.after('<span class="loadbutton" style="position:relative;top:0.2em;"><img src="' + WCP.plugin_url + 'assets/images/wpspin_light.gif" style="position:relative;top:0.2em;padding-left:1em;padding-right:0.3em;">Sending...</span>');
 
             $.ajax({
                 url: ajaxurl,
@@ -33,7 +37,6 @@
                     $('span.loadbutton').html('<img src="' + WCP.plugin_url + 'assets/images/fail.png" style="position:relative;top:0.2em;padding-left:1em;padding-right:0.3em;"><span style="color:red;font-weight:bold">Error</span>');
                 },
                 dataType: 'JSON'
-
             });
         });
 

@@ -2,6 +2,10 @@
 
 if(!defined('ABSPATH')) exit;
 
+require __DIR__.'/../library/vendor/autoload.php';
+
+use Plivo\RestClient;
+
 /**
  * Class WCP_SMS_Service
  *
@@ -48,18 +52,20 @@ class WCP_SMS_Service
 
         if(empty($this->auth_token) || empty($this->auth_id))
         {
-            throw new Exception('Can\'t start SMS Service. No plivo credentials detected.');
+            throw new Exception("Can't start SMS Service. No Plivo credentials detected.");
         }
 
         try
         {
-            $this->plivo = new RestAPI($this->auth_id, $this->auth_token);
-        } catch(Exception $e)
+//            $this->plivo = new RestAPI($this->auth_id, $this->auth_token); // OLD METHOD
+	        $this->plivo = new RestClient($this->auth_id, $this->auth_token);
+        }
+        catch(Exception $e)
         {
-            throw new Exception('Can\'t start SMS Service. The plivo credentials were faulty.');
+            throw new Exception("Can't start SMS Service. The Plivo credentials are invalid.");
         }
 
-        self::$from = get_option('wcp_from_number', '123456789');
+        self::$from = get_option('wcp_from_number', '+1-777-555-1234');
 
     }
 
@@ -96,11 +102,21 @@ class WCP_SMS_Service
      */
     public function sendText($to, $message)
     {
+    	// new method, REF: https://www.plivo.com/docs/sms/api/message#send-a-message
+	    $response = $this->plivo->messages->create(
+		    self::$from,
+		    [$to],
+		    $message
+	    );
 
-        $params = array('src' => self::$from, 'dst' => $to, 'text' => $message, 'type' => 'sms');
+	    // first element, since we are sending just one message
+	    $uuid = $response->getmessageUuid(0)[0];
+	    sleep(1); // wait a second
 
-        $response = $this->plivo->send_message($params);
+	    $status = $this->plivo->messages->get($uuid);
 
-        return in_array($response["status"], array('200', '201', '202', '203', '204'));
+	    $status = json_decode($status);
+
+	    return in_array($status->message_state, array('queued', 'sent', 'delivered', 'received'));
     }
 }

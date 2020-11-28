@@ -1,12 +1,11 @@
 === WooCommerce Plivo SMS notifications ===
-Contributors: siteoptimo, vdwijngaert
-Donate link: https://www.siteoptimo.com/
+Contributors: mbenedek, siteoptimo, vdwijngaert
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: woocommerce, plivo, sms, notifications, support, update, cart, status, shipping, notification
 Requires at least: 3.6
-Tested up to: 4.5
-Stable tag: 2.1.0
+Tested up to: 5.5.3
+Stable tag: 3.0.0
 
 Allow your WooCommerce website to send SMS notifications to your customers.
 
@@ -82,6 +81,9 @@ You're free to make feature suggestions, but if it's custom work you want, conta
 4. Add your own custom variables to the message.
 
 == Changelog ==
+
+= 2.1.0 (2020-11-28) =
+* New Plivo API implemented
 
 = 2.1.0 (2016-03-24) =
 * Fixes bug where a fatal error was thrown when status hooks could not be accessed.
