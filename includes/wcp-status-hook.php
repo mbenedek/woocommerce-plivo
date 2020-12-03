@@ -89,6 +89,13 @@ class WCP_Status_Hook
                 } catch(Exception $e)
                 {
                     $order->add_order_note(__('Could not text status update to customer. The SMS service returned an exception.'), false);
+
+                    // log the error
+                    if(function_exists("write_log"))
+                    {
+	                    write_log("Exception thrown while trying to send an SMS");
+	                    write_log($e);
+                    }
                 }
             } else
             {
